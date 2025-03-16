@@ -1,0 +1,30 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>浏览器指纹 by fingerprintjs</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/fingerprintjs2@latest/dist/fingerprint2.min.js"></script> -->
+    <script src="fingerprint2.min.js"></script> 
+</head>  
+<body>  
+  
+<h1>浏览器指纹 by fingerprintjs</h1>  
+  
+<p id="result"></p>  
+
+<script>
+    window.onload = function() {  
+        Fingerprint2.get(components => {  
+            const values = components.map(component => component.value);  
+            const murmur = Fingerprint2.x64hash128(values.join(''), 31);  
+            // 获取页面上的元素  
+            const resultElement = document.getElementById('result');  
+            // 调用函数，并将返回值设置到页面上
+            resultElement.textContent = murmur;
+        });  
+    };
+</script>
+
+</body>  
+</html>
